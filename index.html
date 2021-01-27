@@ -5,48 +5,52 @@
 	</head>
 
 	<body>
-		<div id = "Header" class = "mainContainer">
-			<div id = "EarthIcon" class = "earthIcon horizontalElement"></div>
-			<div id = "DateLabel" class = "horizontalElement"> JANUARY 20, 2021 </div>
-			<div id = "TimeLabel" class = "horizontalElement"> 10:59:42 am </div>
-			<div id = "SolarStatus" class = "horizontalElement"> Solar Status
-				<div id = "SolarStatusON" class = "ovalLabel">On</div>
-				<div id = "SolarStatusOFF" class = "ovalLabel">Off</div>
+		<div id = "Screen">
+			<div id = "Header" class = "mainContainer">
+				<div id = "EarthIcon" class = "earthIcon horizontalElement"></div>
+				<div id = "DateLabel" class = "horizontalElement"><div class= "verticalAlign">JANUARY 20, 2021 </div></div>
+				<div id = "TimeLabel" class = "horizontalElement"><div class= "verticalAlign">10:59:42 <div class = "smallerText">AM</div> </div></div>
+				<div id = "SolarStatus" class = "horizontalElement">
+					<div class= "verticalAlign"> Solar Status </div>
+				</div>
+				<div id = "SolarStatusON" class = "ovalLabel horizontalElement"><div class= "verticalAlign">On</div></div>
+				<div id = "SolarStatusOFF" class = "ovalLabel horizontalElement"><div class= "verticalAlign">Off</div></div>
+				<div id = "Update" class = "horizontalElement">
+					<div class= "verticalAlign"> Next Update </div>
+				</div>
+				<div id = "UpdateTimer" class = "ovalLabel horizontalElement"><div class= "verticalAlign">3:24</div></div>
+				<div id = "HeaderArrow"></div>
 			</div>
-			<div id = "Update" class = "horizontalElement"> Next Update
-				<div id = "UpdateTimer" class = "ovalLabel">3:24</div>
+			<div id = "Production" class = "mainContainer horizontalChainnedMainContainer">
+				<div id = "ProductionIcon" class = "circularIcon circle"> </div>
+				<div id = "ProductionLabel">We're currently producing [n1] AC of clean energy</div>
 			</div>
-			<div id = "HeaderArrow"></div>
+			<div id = "Bulbs" class = "mainContainer horizontalChainnedMainContainer">		
+				<div id = "BulbsIcon" class = "circularIcon circle"> </div>
+				<div id = "BulbsLabel">That's enough to power [n2] lightbulbs</div>
+				<div class = "rightArrow"></div>
+			</div>
+			<div id = "MonthTotal" class = "mainContainer horizontalChainnedMainContainer">
+				<div id = "MonthTotalIcon" class = "circularIcon circle"> </div>
+				<div id = "MonthTotalLabel">This month we've produced [n3] AC in total</div>
+				<div class = "rightArrow"></div>
+			</div>
+			<div id = "WeekGraph" class = "mainContainer"></div>
+			<div id = "Trees" class = "mainContainer">
+				<div id = "TreesHeader" class = "ribbon">TREES PLANTED TODAY</div>
+				<div id = "TreesIconLeft" class = "treesIcons simpleIcon"></div>
+				<div id = "TreesValue" class = "circle">552</div>
+				<div id = "TreesIconRight" class = "treesIcons simpleIcon"></div>
+				<div id = "TreesSubtitles">The carbon emission saved by the solar energy generated today is equal to planting [n4] trees</div>
+			</div>
+			<div id = "Co2Today" class = "mainContainer">
+				<div id = "Co2Header" class = "ribbon">TREES PLANTED TODAY</div>
+				<div id = "Co2IconLeft" class = "Co2Icons simpleIcon"></div>
+				<div id = "Co2Value" class = "circle">64003 kg</div>
+				<div id = "Co2IconRight" class = "Co2Icons simpleIcon"></div>
+				<div id = "Co2Subtitles" class = "subtitles">That's how many kilograms of carbon emissions it would cost to generate today's energy by a fossil fuel system</div>
+			</div>
 		</div>
-		<div id = "Production" class = "mainContainer">
-			<div id = "ProductionIcon" class = "circularIcon circle"> </div>
-			<div id = "ProductionLabel">We're currently producing [n1] AC of clean energy</div>
-		</div>
-		<div id = "Bulbs" class = "mainContainer">		
-			<div id = "BulbsIcon" class = "circularIcon circle"> </div>
-			<div id = "BulbsLabel">That's enough to power [n2] lightbulbs</div>
-			<div class = "rightArrow"></div>
-		</div>
-		<div id = "MonthTotal" class = "mainContainer"></div>
-			<div id = "MonthTotalIcon" class = "circularIcon circle"> </div>
-			<div id = "MonthTotalLabel">This month we've produced [n3] AC in total</div>
-			<div class = "rightArrow"></div>
-		<div id = "WeekGraph" class = "mainContainer"></div>
-		<div id = "Trees" class = "mainContainer">
-			<div id = "TreesHeader" class = "ribbon">TREES PLANTED TODAY</div>
-			<div id = "TreesIconLeft" class = "treesIcons simpleIcon"></div>
-			<div id = "TreesValue" class = "circle">552</div>
-			<div id = "TreesIconRight" class = "treesIcons simpleIcon"></div>
-			<div id = "TreesSubtitles">The carbon emission saved by the solar energy generated today is equal to planting [n4] trees</div>
-		</div>
-		<div id = "Co2Today" class = "mainContainer">
-			<div id = "Co2Header" class = "ribbon">TREES PLANTED TODAY</div>
-			<div id = "Co2IconLeft" class = "Co2Icons simpleIcon"></div>
-			<div id = "Co2Value" class = "circle">64003 kg</div>
-			<div id = "Co2IconRight" class = "Co2Icons simpleIcon"></div>
-			<div id = "Co2Subtitles" class = "subtitles">That's how many kilograms of carbon emissions it would cost to generate today's energy by a fossil fuel system</div>
-		</div>
-
 		<script src="./js/main.js"></script>
 	</body>
 </html>
