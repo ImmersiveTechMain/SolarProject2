@@ -120,7 +120,19 @@ body {
     font-family: "Bold";
     margin-right: 0.25em;
 }
-.rightArrow{}
+.rightArrow
+{
+    background-color: #ffffff;
+    position: absolute;
+    left: -5%;
+    width: 4%;
+    height: 10%;
+    background-image: url(../images/triangle.png);
+    background-size: contain;
+    background-repeat: no-repeat;
+    top: 50%;
+    transform: translateY(-69%);
+}
 .ribbon
 {
     position: relative;
