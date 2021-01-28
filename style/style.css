@@ -1,8 +1,21 @@
+
+/* Hide scrollbar for Chrome, Safari and Opera */
+body::-webkit-scrollbar {
+  display: none;
+}
+/* Hide scrollbar for IE, Edge and Firefox */
+body {
+  -ms-overflow-style: none;  /* IE and Edge */
+  scrollbar-width: none;  /* Firefox */
+}
+
 .smallerText{font-size: 0.7em; display:inline;}
+.underlinedText{ display: inline-block; border-bottom: solid black 0.12vw;}
+.superText{ display: inline-block; font-size: 0.6em; transform: translateY(-0.45em); }
 .mainContainer
 {
     display: inline-block;
-    border-radius: 6px;
+    border-radius: 0.45vw;
     position: relative;
     float: left;
 }
@@ -13,6 +26,14 @@
     height: 19.3%;
     width: 30.5%;
     margin-left: 1.68%;
+}
+.verticalChainnedMainContainer
+{
+    border: solid 0.2vw black;
+    margin-left: 1.68%;
+    width: 46.3%;
+    height: 26.1%;
+    border-radius: 0.45vw;
 }
 .horizontalElement
 {
@@ -35,7 +56,7 @@
     height: 27%;
     background-color: #fdcc6e;
     border-radius: 30px;
-    border: solid black 2px;
+    border: solid black 0.11vw;
     text-align: center;
     font-family: "Medium";
     font-size: 0.9vw;
@@ -43,14 +64,111 @@
     top: 58%;
     transform: translateY(-50%);
 }
-.circularIcon{}
-.circle{}
+.circularIcon
+{    
+	background-origin: border-box;
+    background-repeat: no-repeat;
+    background-size: 50%;
+    background-position: 50%,50%;
+}
+.circle
+{
+	width: 18%;
+    height: calc(18% / (19.3 / 54.734));
+    background-color: #ffffff;
+    position: relative;
+    top: 49%;
+    transform: translateY(-50%);
+    border-radius: 100%;
+    border: solid 0.25vw #f69539;
+}
+.circle2
+{
+    width: 16%;
+    height: calc(calc(16 * 46.3 * 1.777 / 26) * 1%);
+    background-color: #ccdfe5;
+    position: relative;
+    top: 34.5%;
+    transform: translateY(-50%);
+    border-radius: 100%;
+    border: solid 0.25vw #126b88;
+    text-align: center;
+    font-family: "Bold";
+    display: inline-block;
+    float: left;
+    margin-left: 2.2%;
+    margin-right: 3.2%;
+    font-size: 1.8vw;
+}
+.horizontalChainnedMainContainerLabel
+{
+	font-family: "Regular";
+    display: inline-block;
+    margin-left: 4.7%;
+    height: 50%;
+    width: 58%;
+    position: relative;
+    top: 50%;
+    transform: translateY(-50%);
+    font-size: 1.23vw;
+    line-height: 1.8vw;
+}
+.focusedValue
+{
+    color: #fa8e2d;
+    display: inline;
+    font-family: "Bold";
+    margin-right: 0.25em;
+}
 .rightArrow{}
-.ribbon{}
+.ribbon
+{
+    position: relative;
+    width: 100%;
+    height: 13%;
+    background-color: blueviolet;
+    margin-top: 2.5%;
+    text-align: center;
+	font-family: "Medium";
+	color: white;
+    font-size: 0.834vw;
+}
 .simpleIcon{}
-.treesIcons{}
-.Co2Icons{}
-.subtitles{}
+.treesIcons
+{
+	background-image: url("../images/Trees.png");
+    background-repeat: no-repeat;
+    background-size: contain;
+    width: 11%;
+    height: 33%;
+    display: inline-block;
+	float: left;
+    margin-top: 5%;
+}
+.Co2Icons
+{
+	background-image: url("../images/Carbon Factory.png");
+    background-repeat: no-repeat;
+    background-size: contain;
+    width: 9%;
+    height: 35%;
+    display: inline-block;
+    float: left;
+    margin-top: 5.3%;
+}
+.subtitles
+{    
+	display: inline-block;
+    text-align: center;
+    width: 100%;
+    bottom: 5%;
+    left: 50%;
+    float: right;
+    position: absolute;
+    transform: translateX(-50%);
+    font-family: "Regular";
+    font-size: 0.82vw;
+}
 .verticalAlign
 {
     top: 50%;
@@ -63,7 +181,7 @@
     font-family: 'Regular';
     display: block;
     width: calc(100% - 20px);
-    height: calc(56.25vw - 20px);
+    height: calc(55.7894vw - 20px);
     position: absolute;
     padding: 0;
     margin: 0;
@@ -137,25 +255,76 @@
 {
     margin-left: 2.5%;
 }
-#ProductionIcon{}
+#ProductionIcon
+{
+    float: left;
+    margin-left: 10.8%;
+    display: inline-block;
+	background-image: url("../images/Clean Energy.png");
+}
 #ProductionLabel{}
 #Bulbs{}
-#BulbsIcon{}
-#BulbsLabel{}
+#BulbsIcon
+{
+    float: left;
+    margin-left: 17.5%;
+    display: inline-block;
+	background-image: url("../images/Lightbulbs.png");
+}
+#BulbsLabel{ width: 45%; }
 #MonthTotal{}
-#MonthTotalIcon{}
+#MonthTotalIcon
+{   
+    float: left;
+	margin-left: 10.3%;
+    display: inline-block;
+	background-image: url("../images/Total AC.png");
+}
 #MonthTotalLabel{}
-#WeekGraph{}
-#Trees{}
-#TreesHeader{}
-#TreesIconLeft{}
-#TreesValue{}
+#WeekGraph
+{
+    border-radius: 0.45vw;
+    float: left;
+    width: 46.3%;
+    height: 56.1%;
+    border: solid 0.22vw;
+    margin-top: 1.75%;
+    margin-left: 2.3%;
+}
+#Trees
+{
+    margin-top: 1.75%;
+}
+#TreesHeader
+{
+    background-color: #23aa4a;
+}
+#TreesIconLeft{ margin-left: 28.755%; }
+#TreesValue
+{
+    background-color: #e5f3d9;
+    border-color: #3ab152;
+}
 #TreesIconRight{}
 #TreesSubtitles{}
-#Co2Today{}
-#Co2Header{}
-#Co2IconLeft{}
-#Co2Value{}
+#Co2Today
+{
+    margin-top: 1.7%;
+}
+#Co2Header
+{
+    background-color: #00607f;
+}
+#Co2IconLeft
+{
+    margin-left: 31.6%;
+}
+#Co2Value
+{
+    margin-left: 1.35%;
+    margin-right: 1.85%;
+    font-size: 1.3vw;
+}
 #Co2IconRight{}
 #Co2Subtitles{}
 
