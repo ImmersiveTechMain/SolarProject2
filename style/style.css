@@ -9,6 +9,7 @@ body {
   scrollbar-width: none;  /* Firefox */
 }
 
+.text{display: inline;}
 .smallerText{font-size: 0.7em; display:inline;}
 .underlinedText{ display: inline-block; border-bottom: solid black 0.12vw;}
 .superText{ display: inline-block; font-size: 0.6em; transform: translateY(-0.45em); }
@@ -22,17 +23,17 @@ body {
 .horizontalChainnedMainContainer
 {
     background-color: #e8e9ea;
-    margin-top: 1.89%;
+    margin-top: 1.8%;
     height: 19.3%;
-    width: 30.5%;
-    margin-left: 1.68%;
+    width: 30.05%;
+    margin-left: 1.8%;
 }
 .verticalChainnedMainContainer
 {
     border: solid 0.2vw black;
     margin-left: 1.68%;
-    width: 46.3%;
-    height: 26.1%;
+    width: 45.65%;
+    height: 25.8%;
     border-radius: 0.45vw;
 }
 .horizontalElement
@@ -54,7 +55,7 @@ body {
 {
     width: 5.6%;
     height: 27%;
-    background-color: #fdcc6e;
+	background-color: #bbe6e4;
     border-radius: 30px;
     border: solid black 0.11vw;
     text-align: center;
@@ -122,16 +123,15 @@ body {
 }
 .rightArrow
 {
-    background-color: #ffffff;
     position: absolute;
-    left: -5%;
+    left: -4.2%;
     width: 4%;
     height: 10%;
     background-image: url(../images/triangle.png);
     background-size: contain;
     background-repeat: no-repeat;
     top: 50%;
-    transform: translateY(-69%);
+    transform: translateY(-92%);
 }
 .ribbon
 {
@@ -170,10 +170,10 @@ body {
 }
 .subtitles
 {    
-	display: inline-block;
+    display: inline-block;
     text-align: center;
     width: 100%;
-    bottom: 5%;
+    bottom: 6%;
     left: 50%;
     float: right;
     position: absolute;
@@ -187,7 +187,51 @@ body {
     transform: translateY(-50%);
     position: relative;
 }
+.graphYValue
+{
+    position: absolute;
+    bottom: calc(0* (100 / 9) * 1%);
+    width: 100%;
+    height: 0.1vw;
+    background-color: #b6d2db;
+}
+.graphYValue_Label
+{
+    position: absolute;
+    height: 1vw;
+    width: 1vw;
+    top: 0;
+    left: -1%;
+    transform: translate(-100%, -50%);
+	font-size: 0.62vw;
+}
+.graphBar
+{
+	position: absolute;
+    bottom: 0%;
+    height: calc(7 * (100/9) * 1%);
+    max-width: 7.4%;
+    width: 7.4%;
+    background-color: #f6983f;
+    border-top-left-radius: 9999px;
+    border-top-right-radius: 9999px;
+    margin-left: 5%;
+}
+.graphBarLabel
+{
+    position: absolute;
+    bottom: 0;
+    height: 1vw;
+    transform: translateY(175%);
+    font-size: 0.6vw;
+    text-align: center;
+    width: 100%;
+}
 
+/* Runtime Classes */
+.toggle_on{ background-color: #fdcc6e; }
+
+/* IDs */
 #Screen
 {
     font-family: 'Regular';
@@ -200,13 +244,13 @@ body {
     border: 0;
     top: 10px;
     left: 10px;
-    background-image: url(../design.png);
+   /* background-image: url(../design.png); */
     background-repeat: no-repeat;
-    background-size: cover;
+    background-size: contain;
 }
 #Header
-{
-    width: 95%;
+{   
+    width: 93.8%;
     height: 10%;
     background-color: #77ccc9;
     display: block;
@@ -243,10 +287,11 @@ body {
     margin-top: 15px;
     margin-bottom: 1px;
     color: #2483ac;
+    width: 10%;
 }
 #SolarStatus
 {
-    margin-left: 21%;
+    margin-left: 19.15%;
     font-family: "Regular";
     font-size: 0.93vw;
     margin-top: 15px;
@@ -262,10 +307,17 @@ body {
     margin-bottom: 1px;
     margin-left: 3%;
 }
+#UpdateBar
+{
+	position: absolute;
+	background-color: #fdcc6e;
+	height : 100%;
+	left:0;
+}
 #UpdateTimer{ margin-left: 1.18%;}
 #Production
 {
-    margin-left: 2.5%;
+    margin-left: 2.39%;
 }
 #ProductionIcon
 {
@@ -297,15 +349,60 @@ body {
 {
     border-radius: 0.45vw;
     float: left;
-    width: 46.3%;
-    height: 56.1%;
+    width: 45.75%;
+    height: 55.5%;
     border: solid 0.22vw;
-    margin-top: 1.75%;
-    margin-left: 2.3%;
+    margin-top: 1.43%;
+    margin-left: 2.28%;
+}
+#Y_Axis
+{	
+    position: absolute;
+    height: 100%;
+    background-color: red;
+    width: 0.1vw;
+    margin-left: 9.4%;
+}
+#WeekGraphTitle
+{
+	width: 50%;
+    text-align: center;
+    position: relative;
+    left: 50%;
+    transform: translateX(-50%);
+    margin-top: 1.4%;
+    font-size: 0.62vw;
+}
+#WeekGraphWeekRange
+{
+    width: 50%;
+    text-align: center;
+    position: relative;
+    left: 50%;
+    transform: translateX(-50%);
+    margin-top: 0.6%;
+    font-size: 0.94vw;
+    font-family: "Medium";
+}
+#WeekGraph_YValues
+{
+    position: absolute;
+    width: 91.7%;
+    height: 80.6%;
+    top: 11.6%;
+    left: 6%;
+}
+#WeekGraph_BarsContainer
+{
+    position: absolute;
+    width: 88%;
+    height: 80.7%;
+    top: 11.5%;
+    left: 9.7%;
 }
 #Trees
 {
-    margin-top: 1.75%;
+    margin-top: 1.43%;
 }
 #TreesHeader
 {
