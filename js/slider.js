@@ -7,7 +7,7 @@ class Slider
 
     SetValue( v ) 
     {
-        this.bar.css("width", ((v*100) + "%") );
+        this.bar.css("clip-path", "inset(0% "+(((1-v)*100) + "%")+" 0% 0%)");
     }
 }
 

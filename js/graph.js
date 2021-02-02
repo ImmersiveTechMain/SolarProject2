@@ -22,10 +22,50 @@ class Graph
         this.originalBar.hide();
         this.originalVerticalLine.hide();        
     }
+
+    SetTitle(title)
+    {
+        this.titleLabel.html(title);
+    }
+
+    SetSubtitle(title)
+    {
+        this.subtitleLabel.html(title);
+    }
     
+    SetUnit(unit)
+    {
+        this.unit = unit;
+    }
+
     CalculateSpacingPerBar(numberOfBars, barThickness)
     {
         return (100 - numberOfBars * barThickness) / (numberOfBars + 1);
+    }
+
+    SetYValues(maxValue, divisions)
+    {
+        var linesCount = divisions + 1;
+        for (var i = 0; i < Math.max(this.yValues.length, linesCount); i++)
+        {
+            var validValue = i < linesCount;
+            var lineExist = i < this.yValues.length && this.yValues[i] != null;
+
+            var spacing = i * (1 / divisions);
+
+            if (validValue)
+            {
+                var value = i * (maxValue / divisions);
+                value = value == 0 && this.unit != null ? this.unit : Math.floor(value);
+                var line = !lineExist ? this.CreateYValue(value, spacing) : this.yValues[i];
+                this.yValues[i] = line;
+            }
+            else if (lineExist) 
+            {  
+                this.yValues[i].Destroy();
+                this.yValues[i] = null;
+            }
+        }
     }
 
     SetBarsValues(valuesArray)

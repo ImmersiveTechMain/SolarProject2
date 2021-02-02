@@ -12,7 +12,7 @@ body {
 .text{display: inline;}
 .smallerText{font-size: 0.7em; display:inline;}
 .underlinedText{ display: inline-block; border-bottom: solid black 0.12vw;}
-.superText{ display: inline-block; font-size: 0.6em; transform: translateY(-0.45em); }
+.superText{ display: inline-block; font-size: 0.6em; transform: translate(0.45em, -0.45em);}
 .mainContainer
 {
     display: inline-block;
@@ -50,6 +50,7 @@ body {
     background-image: url("../images/Globe.png");
     background-repeat: no-repeat;
     background-size: contain;
+    background-position: center;
 }
 .ovalLabel
 {
@@ -199,11 +200,12 @@ body {
 {
     position: absolute;
     height: 1vw;
-    width: 1vw;
+    width: 5%;
     top: 0;
-    left: -1%;
+    left: -0.5%;
     transform: translate(-100%, -50%);
-	font-size: 0.62vw;
+    font-size: 0.62vw;
+    text-align: right;
 }
 .graphBar
 {
@@ -216,6 +218,7 @@ body {
     border-top-left-radius: 9999px;
     border-top-right-radius: 9999px;
     margin-left: 5%;
+    transition: height 2s;
 }
 .graphBarLabel
 {
@@ -270,23 +273,23 @@ body {
 }
 #EarthIcon
 { 
-    width: 5%;
+    width: 4%;
     margin-left: 1.59%;
 }
 #DateLabel
 {
     font-size: 2.066vw;
     font-family: 'Medium';
-    margin-left: 1%;
+    margin-left: 2%;
 }
 #TimeLabel
 {
     font-family: 'Medium';
     margin-left: 2%;
-    font-size: 1.1vw;
+    font-size: 1.25vw;
     margin-top: 15px;
     margin-bottom: 1px;
-    color: #2483ac;
+    color: #1d536b;
     width: 10%;
 }
 #SolarStatus
@@ -313,6 +316,9 @@ body {
 	background-color: #fdcc6e;
 	height : 100%;
 	left:0;
+    border-radius: 30px;
+    clip-path:inset(0% 0% 0% 0%);
+    width: 100%;
 }
 #UpdateTimer{ margin-left: 1.18%;}
 #Production
@@ -335,7 +341,7 @@ body {
     display: inline-block;
 	background-image: url("../images/Lightbulbs.png");
 }
-#BulbsLabel{ width: 45%; }
+#BulbsLabel{ width: 48%; }
 #MonthTotal{}
 #MonthTotalIcon
 {   
