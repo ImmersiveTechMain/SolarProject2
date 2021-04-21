@@ -1,6 +1,9 @@
 var SELF = this;
+var INVERTER_DEVICE_COUNT = 8;
+
 var updateDataRefreshRate = 10 * 1000;
 
+var inverter = new Inverter(INVERTER_DEVICE_COUNT);
 var solarStatustoggle = new DuoToggle( $("#SolarStatusON"), $("#SolarStatusOFF") ,true);
 var timer = new TimePrinter($("#DateLabel").find("div.verticalAlign")[0], $("#TimeLabel").find("div.verticalAlign")[0]);
 var graph = new Graph($("#WeekGraphTitle"), $("#WeekGraphWeekRange"), $(".graphYValue"), $(".graphBar"));
@@ -33,9 +36,46 @@ var Update = function()
     co2Label.Refresh();
 }
 
-var DelayedUpdate = function()
+var GetDataFromServer = function()
 {
-    updateTimer.SetDuration(updateDataRefreshRate); 
+    var form = 
+    {
+        "Action": "GetData"
+    };
+
+    $.post("../server/server.php", form, function( response )
+    {
+        var valid = response != undefined && response != null && response != "null";
+        if (valid)
+        {
+            var data = JSON.parse(response);
+            inverter.SetData(data);
+            SELF.ApplyData(data);
+        }
+    });
+}
+
+var ApplyData = function(data)
+{
+    var totalEnergyProducedToday = inverter.GetTotalEnergyProducedToday(); // wh (watts per hour) (the avarage energy over an hour)
+    var totalEnergyProducedToday_KW = totalEnergyProducedToday / 1000;
+    var lightBulbsLighted = Math.floor( totalEnergyProducedToday / 60 );
+
+    var poundsToKG = 0.453592;
+    var co2PerKwh = (0.92 * poundsToKG); // 0.92 punds, 
+    var co2AbsorbtionOfATreeInAYear = (48 * poundsToKG);
+    var energyOfATree = co2AbsorbtionOfATreeInAYear / co2PerKwh;
+    var trees = Math.floor(totalEnergyProducedToday_KW / energyOfATree);
+
+    productionLabel.SetValue(totalEnergyProducedToday);
+    bulbsLabel.SetValue(lightBulbsLighted);
+    treesLabel.SetValue(trees);
+    treesSubtitleValueLabel.html(treesLabel.currentlyValueBeingDisplayed);
+    co2Label.SetValue(totalEnergyProducedToday_KW);
+}
+
+var DebugValuesChanging = function()
+{
     productionLabel.SetValue(2 + productionLabel.value * 2);
     bulbsLabel.SetValue(2 + bulbsLabel.value * 2);
     monthTotalLabel.SetValue(2 + monthTotalLabel.value * 2);
@@ -43,6 +83,13 @@ var DelayedUpdate = function()
     treesSubtitleValueLabel.html(treesLabel.currentlyValueBeingDisplayed);
     co2Label.SetValue(2 + co2Label.value * 2);
     SELF.TestGraph();
+}
+
+var DelayedUpdate = function()
+{
+    SELF.GetDataFromServer();
+    //SELF.DebugValuesChanging();
+    updateTimer.SetDuration(updateDataRefreshRate);
 }
 
 var SetupDependentVariables = function()

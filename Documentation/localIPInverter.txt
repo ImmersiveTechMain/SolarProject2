@@ -1,0 +1,1 @@
+10.41.1.11/solar_api/GetAPIVersion.cgi.

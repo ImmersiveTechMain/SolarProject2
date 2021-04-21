@@ -1,0 +1,3 @@
+<?php
+
+	$rawData = $_Post;
