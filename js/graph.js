@@ -58,6 +58,11 @@ class Graph
                 var value = i * (maxValue / divisions);
                 value = value == 0 && this.unit != null ? this.unit : Math.floor(value);
                 var line = !lineExist ? this.CreateYValue(value, spacing) : this.yValues[i];
+                if (lineExist)
+                {
+                    line.SetValue(value);
+                    line.SetHeight(spacing);
+                }
                 this.yValues[i] = line;
             }
             else if (lineExist) 
@@ -90,6 +95,7 @@ class Graph
                 }
                 bar.SetName(valuesArray[i].name);
                 bar.SetValue(valuesArray[i].value);
+                bar.SetTransparentMode(valuesArray[i].isTransparent);
 
                 var barMarginLeft = spacing + (i * (spacing + widthPerBar));
 
@@ -131,5 +137,11 @@ class GraphBarData
     {   
         this.name = name;
         this.value = value;
+        this.isTransparent = false;
+    }
+
+    SetTransparentMode( isTransparent )
+    {
+        this.isTransparent = isTransparent;
     }
 }

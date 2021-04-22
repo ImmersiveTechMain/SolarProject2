@@ -220,6 +220,12 @@ body {
     margin-left: 5%;
     transition: height 2s;
 }
+
+.transparentBar
+{
+	background-color: #f6983f8a;
+}
+
 .graphBarLabel
 {
     position: absolute;

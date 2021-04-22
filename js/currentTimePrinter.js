@@ -20,7 +20,7 @@ class TimePrinter
         ampm.html(dayTime);
         
         
-        this.dateLabel.html( this.GetMonthName(date.getMonth()).toUpperCase() + " " + date.getDay() + ", " + date.getFullYear());
+        this.dateLabel.html( this.GetMonthName(date.getMonth()).toUpperCase() + " " + date.getDate() + ", " + date.getFullYear());
     }
 
     GetDayName(dayIndex)

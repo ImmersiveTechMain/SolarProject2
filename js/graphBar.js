@@ -20,6 +20,19 @@ class GraphBar
         this.bar.css("height", ((n * 100) + "%") );
     }
 
+    SetTransparentMode(isTransparent)
+    {
+        var className = "transparentBar";
+        if (isTransparent)
+        {
+            this.bar.addClass(className);
+        }   
+        else
+        {
+            this.bar.removeClass(className);
+        }
+    }
+
     Destroy()
     {
         this.bar.remove();

@@ -24,6 +24,74 @@ var TestGraph = function()
     graph.SetYValues(2300, bars.length);
 }
 
+var ApplyWeekDataToGraph = function(data)
+{
+    if (data != null)
+    {
+        var bars = 
+        [ 
+            new GraphBarData("Sunday", 0),
+            new GraphBarData("Monday", 0,), 
+            new GraphBarData("Tuesday", 0), 
+            new GraphBarData("Wednesday", 0),
+            new GraphBarData("Tuesday", 0), 
+            new GraphBarData("Friday", 0),
+            new GraphBarData("Saturday", 0)
+        ];
+        
+        var maxEnergyRegistered = 0;
+        var todayDate = null;
+        var oldestDayDate = null;
+
+        if (data.days != undefined)
+        {
+            for (var i = 0; i < data.days.length; i++)
+            {
+                var thatDayInverter = new Inverter(INVERTER_DEVICE_COUNT);
+                var thatDayEnergy = 0;
+                var barIndex = data.startingDayOfWeekIndex - i;
+                if (barIndex < 0) { barIndex += bars.length; }
+
+                if (data.days[i] != null)
+                {
+                    if (i == 0) 
+                    {
+                        todayDate = new Date(data.days[i].Head.Timestamp);
+                    }
+                    oldestDayDate = new Date(data.days[i].Head.Timestamp);
+
+                    thatDayInverter.SetData(data.days[i]);
+                    thatDayEnergy = thatDayInverter.GetTotalEnergyProducedToday() / 1000; // we divided by 1000 to transform from Wh to KWh
+                    if (thatDayEnergy > maxEnergyRegistered)
+                    {
+                        maxEnergyRegistered = thatDayEnergy;
+                    }
+                }
+
+                bars[barIndex].value = thatDayEnergy;
+                bars[barIndex].SetTransparentMode(barIndex > data.startingDayOfWeekIndex);
+            }
+        }
+
+        for (var i = 0; i < bars.length; i++)
+        {
+            bars[i].value =   bars[i].value /  maxEnergyRegistered; // normalize values
+        }
+
+        graph.SetUnit("KWh");
+        graph.SetBarsValues(bars);
+        graph.SetYValues(maxEnergyRegistered, bars.length);
+        
+        var month = todayDate == null ? "" : timer.GetMonthName(todayDate.getMonth());
+        var fromDate = oldestDayDate == null ? "" : oldestDayDate.getDate();
+        var toDate = todayDate == null ? "" : todayDate.getDate();
+        toDate = toDate == fromDate ? "" : toDate;
+        var thereAre2DifferentDates =  fromDate != "" && toDate != "";
+
+        graph.SetSubtitle((month + " " + fromDate + (thereAre2DifferentDates ? "-" : "") + toDate).toUpperCase());
+    }
+}
+
 var Update = function()
 {
     timer.Refresh();
@@ -53,6 +121,49 @@ var GetDataFromServer = function()
             SELF.ApplyData(data);
         }
     });
+
+    var form2 = 
+    {
+        "Action": "GetWeekReport"
+    };
+
+    $.post("../server/server.php", form2, function( response )
+    {
+        var valid = response != undefined && response != null && response != "null";
+        if (valid)
+        {
+            var data = JSON.parse(response);
+            if (data != null && data.days != undefined)
+            {
+                for (var i = 0; i < data.days.length; i++)
+                {
+                    var validDataPiece = data.days[i] != null && data.days[i] != "null";
+                    data.days[i] = validDataPiece ? JSON.parse(data.days[i]) : null;
+                }
+            
+                SELF.ApplyWeekDataToGraph(data);
+            }
+        }
+    });
+
+    var form3 = 
+        {
+            "Action": "GetTotalMonthEnergy"
+        };
+
+        $.post("../server/server.php", form3, function( response )
+        {
+            var valid = response != undefined && response != null && response != "null";
+            if (valid)
+            {
+                var data = JSON.parse(response);
+                if (data != null)
+                {
+                    var totalEnergyThisMonth = data / 1000; // transform to kh
+                    monthTotalLabel.SetValue(totalEnergyThisMonth);
+                }
+            }
+        });
 }
 
 var ApplyData = function(data)
@@ -100,11 +211,9 @@ var SetupDependentVariables = function()
 var Run = function()
 {
     this.SetupDependentVariables();
-    this.TestGraph();
     this.DelayedUpdate();
 
-    graph.SetTitle("TEST OF A TITLE");
-    graph.SetSubtitle("MONTH 99-99");
+    graph.SetTitle("ENERGY PRODUCED THIS WEEK");
 
     setInterval(Update, 1000/60);
 }();
