@@ -130,14 +130,30 @@
                                 $year = date_format($date,"Y");
                                 
                                 $daysInTheMonth = cal_days_in_month(CAL_GREGORIAN,$month, $year );
+                                $somethingFound = false;
                                 
                                 for ($i = 1; $i < $daysInTheMonth; $i++)
                                 {
-                                    if (isset($monthRegistryData->Data) && isset($monthRegistryData->Data->$i))
+                                    $key = $i;
+                                    if ($i < 10)
                                     {
-                                       $response = $response + $monthRegistryData->Data->$i;
+                                       $key = "0".$i; 
+                                    }
+                                    if (isset($monthRegistryData->Data) && isset($monthRegistryData->Data->$key))
+                                    {
+                                       $response = $response + $monthRegistryData->Data->$key;
+                                       $somethingFound = true;
                                     }
                                 }
+                                
+                                if ($response == 0 && !$somethingFound)
+                                {                                
+                                    $response = "Nothing found in month: " . $month . " year: " . $year . " days in the month: " . $daysInTheMonth . " Raw data was: " . $rawMonthData ;
+                                }
+                        }
+                        else
+                        {
+                            $response = "File not found: " . $monthRegistryFilePath ;
                         }
                         
                         echo $response;
