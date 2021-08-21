@@ -34,7 +34,7 @@ var ApplyWeekDataToGraph = function(data)
             new GraphBarData("Monday", 0,), 
             new GraphBarData("Tuesday", 0), 
             new GraphBarData("Wednesday", 0),
-            new GraphBarData("Tuesday", 0), 
+            new GraphBarData("Thursday", 0), 
             new GraphBarData("Friday", 0),
             new GraphBarData("Saturday", 0)
         ];
